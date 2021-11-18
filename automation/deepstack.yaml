@@ -10,7 +10,7 @@ spec:
     server: 'https://kubernetes.default.svc'
   source:
     path: charts/charts/stable/deepstack
-    repoURL: 'git@github.com:k8s-at-home/charts.git'
+    repoURL: 'https://github.com/k8s-at-home/charts.git'
     targetRevision: master
     helm:
       valueFiles:
