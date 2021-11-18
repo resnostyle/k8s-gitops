@@ -32,15 +32,14 @@ configureArgocd(){
 
 deployArgoSets(){
 argocd app create init --repo git@github.com:resnostyle/k8s-gitops.git --path applications/bootstrap --dest-server https://kubernetes.default.svc --directory-recurse --auto-prune --self-heal --sync-policy auto
-
-
-
-
 argocd app create services --repo git@github.com:resnostyle/k8s-gitops.git --path applications/services --dest-server https://kubernetes.default.svc --directory-recurse --auto-prune --self-heal --sync-policy auto
 }
 
 configureArgocd() {
   message "configure argocd"
+  sleep 45s
+  message "waiting for argocd"
+  #actually do a smart wait instead of just a sleep
   argocd login --core
 }
 

@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: deepstack
+  namespace: argocd
+spec:
+  destination:
+    name: ''
+    namespace: automation
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: charts/charts/stable/deepstack
+    repoURL: 'git@github.com:k8s-at-home/charts.git'
+    targetRevision: master
+    helm:
+      valueFiles:
+        - values.yaml
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
