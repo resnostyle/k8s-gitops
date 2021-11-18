@@ -11,7 +11,7 @@ spec:
   source:
     path: charts/stable/deepstack
     repoURL: 'https://github.com/k8s-at-home/charts.git'
-    targetRevision: master
+    targetRevision: da14384
     helm:
       valueFiles:
         - values.yaml
