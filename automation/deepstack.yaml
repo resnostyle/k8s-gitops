@@ -9,7 +9,7 @@ spec:
     namespace: automation
     server: 'https://kubernetes.default.svc'
   source:
-    path: charts/charts/stable/deepstack
+    path: charts/stable/deepstack
     repoURL: 'https://github.com/k8s-at-home/charts.git'
     targetRevision: master
     helm:
