@@ -1,19 +1,15 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  annotations:
-    kubectl.kubernetes.io/last-applied-configuration: |
-      {"apiVersion":"argoproj.io/v1alpha1","kind":"AppProject","metadata":{"annotations":{},"finalizers":["resources-finalizer.argocd.argoproj.io"],"name":"bootstrap","namespace":"argocd"},"spec":{"description":"Bootstrap Project","orphanedResources":{"warn":false},"sourceRepos":["*"]}}
-  creationTimestamp: "2021-11-21T21:29:39Z"
-  finalizers:
-  - resources-finalizer.argocd.argoproj.io
-  generation: 2
+  generation: 1
   name: bootstrap
   namespace: argocd
 spec:
-  description: Bootstrap Project
-  orphanedResources:
-    warn: false
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  destinations:
+  - namespace: 'kube-system'
+    server: '*'
   sourceRepos:
   - '*'
-status: {}

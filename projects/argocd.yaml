@@ -1,14 +1,15 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  finalizers:
-  - resources-finalizer.argocd.argoproj.io
+  generation: 1
   name: argocd
   namespace: argocd
 spec:
-  description: yes
-  orphanedResources:
-    warn: false
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  destinations:
+  - namespace: 'argocd'
+    server: '*'
   sourceRepos:
   - '*'
-status: {}
