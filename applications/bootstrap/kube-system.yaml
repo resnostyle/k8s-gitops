@@ -9,7 +9,7 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   # The project the application belongs to.
-  project: default
+  project: bootstrap
 
   # Source of the application manifests
   source:
