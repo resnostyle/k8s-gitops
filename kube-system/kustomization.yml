@@ -4,10 +4,10 @@ namespace: kube-system
 resources:
   - github.com/metallb/metallb//manifests?ref=v0.11.0
 
-  configMapGenerator:
-      #  - name: config
-      #    files:
-      #      - configs/config
+    #  configMapGenerator:
+    #  - name: config
+    #    files:
+    #    - configs/config
 
 generatorOptions:
  disableNameSuffixHash: true
