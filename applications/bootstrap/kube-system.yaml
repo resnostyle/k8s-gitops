@@ -1,4 +1,31 @@
 apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: guestbook
+spec:
+  generators:
+    - git:
+        repoURL: git@github.com:resnostyle/k8s-gitops.git
+        files:
+        - path: "cluster-config/**/config.json"
+  template:
+    metadata:
+      name: '{{cluster.name}}-guestbook'
+    spec:
+      project: default
+      source:
+        repoURL: git@github.com:resnostyle/k8s-gitops.git
+        path: kube-system
+      destination:
+        server: https://kubernetes.default.svc
+        #server: '{{cluster.address}}'
+        namespace: guestbook
+
+
+
+
+
+apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: system
