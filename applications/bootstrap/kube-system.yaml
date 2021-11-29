@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: guestbook
+  name: system
 spec:
   generators:
     - git:
@@ -18,8 +18,7 @@ spec:
         path: kube-system
       destination:
         server: https://kubernetes.default.svc
-        #server: '{{cluster.address}}'
-        namespace: guestbook
+        namespace: kube-system
 
 
 
