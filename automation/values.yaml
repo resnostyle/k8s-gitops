@@ -186,7 +186,7 @@ double-take:
     # -- image repository
     repository: jakowenko/double-take
     # -- image tag
-    tag: 1.6.0
+    tag: 1.7.0
     # -- image pull policy
     pullPolicy: IfNotPresent
 
