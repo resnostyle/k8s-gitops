@@ -1,28 +1,24 @@
-apiVersion: argoproj.io/v1alpha1
-kind: ApplicationSet
-metadata:
-  name: system
-spec:
-  generators:
-    - git:
-        repoURL: git@github.com:resnostyle/k8s-gitops.git
-        files:
-        - path: "cluster-config/**/config.json"
-  template:
-    metadata:
-      name: '{{cluster.name}}-guestbook'
-    spec:
-      project: default
-      source:
-        repoURL: git@github.com:resnostyle/k8s-gitops.git
-        path: kube-system
-      destination:
-        server: https://kubernetes.default.svc
-        namespace: kube-system
-
-
-
-
+#apiVersion: argoproj.io/v1alpha1
+#kind: ApplicationSet
+#metadata:
+#  name: system
+#spec:
+#  generators:
+#    - git:
+#        repoURL: git@github.com:resnostyle/k8s-gitops.git
+#        files:
+#        - path: "cluster-config/**/config.json"
+#  template:
+#    metadata:
+#      name: '{{cluster.name}}-guestbook'
+#    spec:
+#      project: default
+#      source:
+#        repoURL: git@github.com:resnostyle/k8s-gitops.git
+#        path: kube-system
+#      destination:
+#        server: https://kubernetes.default.svc
+#        namespace: kube-system
 
 apiVersion: argoproj.io/v1alpha1
 kind: Application
