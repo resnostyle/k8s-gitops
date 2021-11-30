@@ -13,6 +13,9 @@ spec:
 
   # Source of the application manifests
   source:
+ # directory
+    directory:
+      recurse: true
     repoURL: git@github.com:resnostyle/k8s-gitops.git
     path: arrs
 
