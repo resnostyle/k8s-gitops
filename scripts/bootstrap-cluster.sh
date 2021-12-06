@@ -17,11 +17,14 @@ message() {
 message "installing argocd"
 
 installArgocd() {
-  helm repo add argo-cd https://argoproj.github.io/argo-helm
+#  helm repo add argo-cd https://argoproj.github.io/argo-helm
   helm repo update
   kubectl create ns argocd
   kubectl config set-context argo --namespace=argocd --cluster=default --user=default
-  helm install argo-cd argo-cd/argo-cd -f argocd-values.yaml
+  kubectl config set-context argo --namespace=argocd --cluster=home --user=default
+#  helm install argo-cd argo-cd/argo-cd -f argocd-values.yaml
+  kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/core-install.yaml
+
 }
 
 configureArgocd(){
