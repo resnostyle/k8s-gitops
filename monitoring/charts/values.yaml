@@ -80,7 +80,7 @@ grafana:
 
   image:
     repository: grafana/grafana
-    tag: 6.3.7
+    tag: 6.7.6
     sha: ""
     pullPolicy: IfNotPresent
 
