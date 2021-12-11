@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
 - base/argocd.yaml
 - base/frigate.yaml
-- base/automate.yaml
+- base/arrs.yaml
