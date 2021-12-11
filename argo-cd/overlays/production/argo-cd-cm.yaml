@@ -1,0 +1,27 @@
+apiVersion: v1
+data:
+  admin.enabled: 'false'
+  statusbadge.enabled: 'true'
+  users.anonymous.enabled: 'true'
+  ga.trackingid: 'UA-105170809-6'
+  url: https://cd.apps.argoproj.io
+  configManagementPlugins: |
+    - name: flux
+      generate:
+        command: [sh, -c]
+        args: ["argocd-flux-plugin . --path $GIT_PATH"]
+  dex.config: |
+    connectors:
+    - type: github
+      id: github
+      name: GitHub
+      config:
+        clientID: fb563b3a8dd7ea52f683
+        clientSecret: $dex.github.clientSecret
+        orgs:
+        - name: argoproj
+          teams:
+          - argo-cd-admins
+kind: ConfigMap
+metadata:
+  name: argocd-cm
