@@ -7,6 +7,7 @@ need() {
 need "kubectl"
 need "helm"
 need "argocd"
+need "kubens"
 
 message() {
       echo -e "\n######################################################################"
@@ -14,40 +15,37 @@ message() {
       echo "######################################################################"
 }
 
-message "installing argocd"
-
 installArgocd() {
-#  helm repo add argo-cd https://argoproj.github.io/argo-helm
-  helm repo update
   kubectl create ns argocd
-  kubectl config set-context argo --namespace=argocd --cluster=default --user=default
-  kubectl config set-context argo --namespace=argocd --cluster=home --user=default
-#  helm install argo-cd argo-cd/argo-cd -f argocd-values.yaml
-  kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/core-install.yaml
-
+  kubectl apply -k ../argo-cd/
 }
 
 configureArgocd(){
-    kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
-    argocd repo add git@gitlab.com:resnostyle/helm-charts.git --ssh-private-key-path ~/.ssh/id_ed25519
-    argocd repo add git@github.com:resnostyle/k8s-gitops.git --ssh-private-key-path ~/.ssh/id_ed25519 --insecure-skip-server-verification
+  kubens argocd
+  kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+  argocd repo add git@gitlab.com:resnostyle/helm-charts.git --ssh-private-key-path ~/.ssh/id_ed25519
+  argocd repo add git@github.com:resnostyle/k8s-gitops.git --ssh-private-key-path ~/.ssh/id_ed25519 --insecure-skip-server-verification
+  kubens -
 }
 
 deployArgoSets(){
-argocd app create init --repo git@github.com:resnostyle/k8s-gitops.git --path applications/bootstrap --dest-server https://kubernetes.default.svc --directory-recurse --auto-prune --self-heal --sync-policy auto
-argocd app create services --repo git@github.com:resnostyle/k8s-gitops.git --path applications/services --dest-server https://kubernetes.default.svc --directory-recurse --auto-prune --self-heal --sync-policy auto
+  kubens argocd
+  argocd app create init --repo git@github.com:resnostyle/k8s-gitops.git --path argoproj --dest-server https://kubernetes.default.svc --directory-recurse --auto-prune --self-heal --sync-policy auto
+  #argocd app create services --repo git@github.com:resnostyle/k8s-gitops.git --path applications/services --dest-server https://kubernetes.default.svc --directory-recurse --auto-prune --self-heal --sync-policy auto
+  kubens -
 }
 
-configureArgocd() {
-  message "configure argocd"
-  sleep 45s
-  message "waiting for argocd"
-  #actually do a smart wait instead of just a sleep
-  argocd login --core
-}
+#configureArgocd() {
+#  message "configure argocd"
+##  sleep 45s
+#  message "waiting for argocd"
+#  #actually do a smart wait instead of just a sleep
+#  argocd login --core
+#}
 
-
+message "installing argocd"
 installArgocd
+sleep 45s
 configureArgocd
 deployArgoSets
 message "argocd installed"

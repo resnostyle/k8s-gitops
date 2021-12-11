@@ -9,5 +9,5 @@ spec:
   project: default
   source:
     path: argocd
-    repoURL: https://github.com/argoproj/argoproj-deployments
+    repoURL: git@github.com:resnostyle/k8s-gitops.git
     targetRevision: HEAD
