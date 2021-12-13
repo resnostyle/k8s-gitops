@@ -33,6 +33,7 @@ configureArgocd(){
 deployArgoSets(){
   kubens argocd
   argocd app create init --repo git@github.com:resnostyle/k8s-gitops.git --path argoproj/argocd --dest-server https://kubernetes.default.svc --directory-recurse --auto-prune --self-heal --sync-policy auto
+  argocd app create cluster-apps --repo git@github.com:resnostyle/k8s-gitops.git --path argoproj/projects --dest-server https://kubernetes.default.svc --directory-recurse --auto-prune --self-heal --sync-policy auto
   #argocd app create services --repo git@github.com:resnostyle/k8s-gitops.git --path applications/services --dest-server https://kubernetes.default.svc --directory-recurse --auto-prune --self-heal --sync-policy auto
   kubens -
 }
