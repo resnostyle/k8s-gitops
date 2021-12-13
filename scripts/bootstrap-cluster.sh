@@ -17,12 +17,14 @@ message() {
 
 installArgocd() {
   kubectl create ns argocd
-  kubectl apply -k ../argo-cd/
+#  kubectl apply -k ../argo-cd/
+#  kubectl delete -k ../argo-cd/
+   helm install argo-cd argoproj/ --namespace argocd
 }
 
 configureArgocd(){
   kubens argocd
-  kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+#  kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
   argocd repo add git@gitlab.com:resnostyle/helm-charts.git --ssh-private-key-path ~/.ssh/id_ed25519
   argocd repo add git@github.com:resnostyle/k8s-gitops.git --ssh-private-key-path ~/.ssh/id_ed25519 --insecure-skip-server-verification
   kubens -
