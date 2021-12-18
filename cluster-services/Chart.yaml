@@ -18,9 +18,9 @@ dependencies:
 - name: nginx-ingress
   version: 4.0.13
   repository: "https://kubernetes.github.io/ingress-nginx"
-- name: metallb
-  version: v0.11.0
-  repository: "https://metallb.github.io/metallb"
+  #- name: metallb
+  #  version: v0.11.0
+  #  repository: "https://metallb.github.io/metallb"
   #- name: traefik
   #  #  version:
   #  repository: "https://helm.traefik.io/traefik"
