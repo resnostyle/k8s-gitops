@@ -14,7 +14,7 @@ spec:
   # Source of the application manifests
   source:
     repoURL: git@github.com:resnostyle/k8s-gitops.git
-    path: argo-cd-old
+    path: argo-cd
 
   # Destination cluster and namespace to deploy the application
   destination:
