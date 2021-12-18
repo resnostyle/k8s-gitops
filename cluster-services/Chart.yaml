@@ -17,7 +17,7 @@ appVersion: "1.0"
 dependencies:
 - name: metallb
   version: v0.11.0
-  repository: "github.com/metallb/metallb//manifests?ref=v0.11.0"
+  repository: "github.com/metallb/metallb//manifests"
   #- name: traefik
   #  #  version:
   #  repository: "https://helm.traefik.io/traefik"
