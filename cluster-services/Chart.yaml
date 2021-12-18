@@ -1,5 +1,5 @@
 apiVersion: v2
-name: automation
+name: system
 description: A Helm chart for Kubernetes
 
 # A chart can be either an 'application' or a 'library' chart.
@@ -12,23 +12,15 @@ description: A Helm chart for Kubernetes
 # pipeline. Library charts do not define any templates and therefore cannot be deployed.
 type: application
 
-# This is the chart version. This version number should be incremented each time you make changes
-# to the chart and its templates, including the app version.
-# Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 0.1.0
-
-# This is the version number of the application being deployed. This version number should be
-# incremented each time you make changes to the application. Versions are not expected to
-# follow Semantic Versioning. They should reflect the version the application is using.
 appVersion: "1.0"
 
 dependencies:
 - name: metallb
   version: v0.11.0
   repository: "github.com/metallb/metallb//manifests?ref=v0.11.0"
-- name: traefik
-  #  version:
-  repository: "https://helm.traefik.io/traefik"
-  #- name: rook-ceph
+  #- name: traefik
+  #  #  version:
+  #  repository: "https://helm.traefik.io/traefik"
+  #  #- name: rook-ceph
   #  version: v1.8.0
   #  repository: "https://charts.rook.io/release"

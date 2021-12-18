@@ -1,0 +1,33 @@
+---
+version: "3"
+
+vars:
+  PROJECT_DIR:
+    sh: "git rev-parse --show-toplevel"
+  CLUSTER_DIR: "{{.PROJECT_DIR}}/cluster"
+  K3S_PRIMARY_MASTER_NODE_USERNAME: "bryan"
+  K3S_PRIMARY_MASTER_NODE_ADDR: "192.168.2.211"
+  K3S_LB_ADDR: "192.168.1.1"
+
+env:
+  KUBECONFIG: "{{.CLUSTER_DIR}}/kubeconfig"
+
+tasks:
+  deps:
+    - task: deps:ansible
+    - task: deps:pre-commit
+
+  deps:ansible:
+    desc: install/upgrade ansible deps
+    dir: ansible
+    cmds:
+      - "ansible-galaxy install -r requirements.yml --roles-path ~/.ansible/roles --force"
+      - "ansible-galaxy collection install -r requirements.yml --collections-path ~/.ansible/collections --force"
+      - "pip3 install -r requirements.txt"
+
+  kubeconfig:
+    desc: Remotely fetch kubeconfig from Kubernetes
+    cmds:
+      - rsync --verbose --progress --partial --rsync-path="sudo rsync" {{.K3S_PRIMARY_MASTER_NODE_USERNAME}}@{{.K3S_PRIMARY_MASTER_NODE_ADDR}}:/etc/rancher/k3s/k3s.yaml "{{.CLUSTER_DIR}}/kubeconfig"
+      - sed -i '' 's/127.0.0.1/{{.K3S_LB_ADDR}}/g' "{{.CLUSTER_DIR}}/kubeconfig"
+      - chmod go-r "{{.CLUSTER_DIR}}/kubeconfig"

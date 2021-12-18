@@ -48,7 +48,7 @@ deployArgoSets(){
 
 message "installing argocd"
 installArgocd
-sleep 45s
+#sleep 45s
 configureArgocd
 deployArgoSets
 message "argocd installed"
