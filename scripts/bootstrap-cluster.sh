@@ -19,7 +19,7 @@ installArgocd() {
   kubectl create ns argocd
 #  kubectl apply -k ../argo-cd/
 #  kubectl delete -k ../argo-cd/
-   helm install argo-cd argoproj/ --namespace argocd
+#   helm install argo-cd argoproj/ --namespace argocd
 }
 
 configureArgocd(){
@@ -32,8 +32,8 @@ configureArgocd(){
 
 deployArgoSets(){
   kubens argocd
-  argocd app create init --repo git@github.com:resnostyle/k8s-gitops.git --path argoproj/system --dest-server https://kubernetes.default.svc --self-heal --sync-policy auto
-  argocd app create cluster-apps --repo git@github.com:resnostyle/k8s-gitops.git --path argoproj/applications --dest-server https://kubernetes.default.svc --directory-recurse --auto-prune --self-heal --sync-policy auto
+  argocd app create kube-system --repo git@github.com:resnostyle/k8s-gitops.git --path argoproj/system --dest-server https://kubernetes.default.svc --self-heal --sync-policy auto
+  argocd app create apps --repo git@github.com:resnostyle/k8s-gitops.git --path argoproj/applications --dest-server https://kubernetes.default.svc --directory-recurse --auto-prune --self-heal --sync-policy auto
   #argocd app create services --repo git@github.com:resnostyle/k8s-gitops.git --path applications/services --dest-server https://kubernetes.default.svc --directory-recurse --auto-prune --self-heal --sync-policy auto
   kubens -
 }
