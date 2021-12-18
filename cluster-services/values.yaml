@@ -1,9 +1,3 @@
-#
-# IMPORTANT NOTE
-#
-# This chart inherits from our common library chart. You can check the default values/options here:
-# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
-#
 nginx-ingress:
   ## nginx configuration
   ## Ref: https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/nginx-configuration/index.md
