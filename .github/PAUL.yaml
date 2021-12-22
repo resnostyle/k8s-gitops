@@ -1,0 +1,16 @@
+maintainers:
+  - resnostyle
+labels: true
+empty_description_check:
+  enabled: false
+  enforced: false
+branch_destroyer:
+  enabled: true
+  protected_branches:
+    - main
+    - gh-pages
+pull_requests:
+  cats_enabled: true
+  dogs_enabled: true
+  allow_approval: true
+  giphy_enabled: true
