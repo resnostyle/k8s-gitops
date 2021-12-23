@@ -9,6 +9,8 @@ vars:
   K3S_PRIMARY_MASTER_NODE_ADDR: "192.168.2.211"
   K3S_LB_ADDR: "192.168.1.1"
   ANSIBLE_PATH: "~/.ansible/"
+  ARGO_CMD_REPO_ADD: "argocd"
+  SSH_KEY_PATH: "~/.ssh/id_ed25519"
 
 env:
   KUBECONFIG: "{{.CLUSTER_DIR}}/kubeconfig"
@@ -17,6 +19,18 @@ tasks:
   deps:
     - task: deps:ansible
       #    - task: deps:pre-commit
+
+  bootstrap:kube:
+    cmds:
+      - task:
+      - task:
+
+  bootstrap:argocd:
+    cmds:
+      - kubectl create ns argocd
+      - kubens argocd
+      - {{.ARGO_CMD_REPO_ADD}} git@gitlab.com:resnostyle/helm-charts.git --ssh-private-key-path {{.SSH_KEY_PATH}}
+      - {{.ARGO_CMD_REPO_ADD}} git@github.com:resnostyle/k8s-gitops.git --ssh-private-key-path {{.SSH_KEY_PATH}} --insecure-skip-server-verification
 
   deps:ansible:
     desc: install/upgrade ansible deps
@@ -32,3 +46,15 @@ tasks:
       - rsync --verbose --progress --partial --rsync-path="sudo rsync" {{.K3S_PRIMARY_MASTER_NODE_USERNAME}}@{{.K3S_PRIMARY_MASTER_NODE_ADDR}}:/etc/rancher/k3s/k3s.yaml "{{.CLUSTER_DIR}}/kubeconfig"
       - sed -i '' 's/127.0.0.1/{{.K3S_LB_ADDR}}/g' "{{.CLUSTER_DIR}}/kubeconfig"
       - chmod go-r "{{.CLUSTER_DIR}}/kubeconfig"
+
+  test:
+    desc: install/upgrade ansible deps
+    cmds:
+      - echo "hello"
+
+  money:
+    desc: install/upgrade ansible deps
+    cmds:
+      - echo "world"
+
+  :
