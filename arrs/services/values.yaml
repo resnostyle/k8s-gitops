@@ -216,7 +216,7 @@ prowlarr:
     # -- image repository
     repository: ghcr.io/k8s-at-home/prowlarr
     # -- image tag
-    tag: v0.1.9.1276
+    tag: v0.1.9.1313
     # -- image pull policy
     pullPolicy: IfNotPresent
 
