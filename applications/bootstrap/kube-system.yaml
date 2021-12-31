@@ -1,25 +1,3 @@
-#apiVersion: argoproj.io/v1alpha1
-#kind: ApplicationSet
-#metadata:
-#  name: system
-#spec:
-#  generators:
-#    - git:
-#        repoURL: git@github.com:resnostyle/k8s-gitops.git
-#        files:
-#        - path: "cluster-config/**/config.json"
-#  template:
-#    metadata:
-#      name: '{{cluster.name}}-guestbook'
-#    spec:
-#      project: default
-#      source:
-#        repoURL: git@github.com:resnostyle/k8s-gitops.git
-#        path: kube-system
-#      destination:
-#        server: https://kubernetes.default.svc
-#        namespace: kube-system
-
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -54,7 +32,6 @@ spec:
   # Sync policy
   syncPolicy:
     automated: # automated sync by default retries failed attempts 5 times with following delays between attempts ( 5s, 10s, 20s, 40s, 80s ); retry controlled using `retry` field.
-      prune: true # Specifies if resources should be pruned during auto-syncing ( false by default ).
       selfHeal: true # Specifies if partial app sync should be executed when resources are changed only in target Kubernetes cluster and no git change detected ( false by default ).
       allowEmpty: true # Allows deleting all application resources during automatic syncing ( false by default ).
     syncOptions:     # Sync options which modifies sync behavior

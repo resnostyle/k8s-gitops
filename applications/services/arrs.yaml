@@ -17,7 +17,7 @@ spec:
     directory:
       recurse: true
     repoURL: git@github.com:resnostyle/k8s-gitops.git
-    path: arrs
+    path: cluster/apps/arrs
 
     # helm specific config
     #    helm:
