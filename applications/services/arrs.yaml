@@ -1,29 +1,7 @@
-#apiVersion: argoproj.io/v1alpha1
-#kind: ApplicationSet
-#metadata:
-#  name: system
-#spec:
-#  generators:
-#    - git:
-#        repoURL: git@github.com:resnostyle/k8s-gitops.git
-#        files:
-#        - path: "cluster-config/**/config.json"
-#  template:
-#    metadata:
-#      name: '{{cluster.name}}-guestbook'
-#    spec:
-#      project: default
-#      source:
-#        repoURL: git@github.com:resnostyle/k8s-gitops.git
-#        path: kube-system
-#      destination:
-#        server: https://kubernetes.default.svc
-#        namespace: kube-system
-
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: system
+  name: arrs
   # You'll usually want to add your resources to the argocd namespace.
   namespace: argocd
   # Add a this finalizer ONLY if you want these to cascade delete.
@@ -31,25 +9,28 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   # The project the application belongs to.
-  project: bootstrap
+  project: default
 
   # Source of the application manifests
   source:
+ # directory
+    directory:
+      recurse: true
     repoURL: git@github.com:resnostyle/k8s-gitops.git
-    path: kube-system
+    path: cluster/apps/arrs
 
     # helm specific config
     #    helm:
     #      # Extra parameters to set (same as setting through values.yaml, but these take precedence)
     #      # Release name override (defaults to application name)
-    #      releaseName: telegraf
+    #      releaseName: arrs
     #
     #      version: v2
-    #
+
   # Destination cluster and namespace to deploy the application
   destination:
     server: https://kubernetes.default.svc
-    namespace: kube-system
+    namespace: arrs
 
   # Sync policy
   syncPolicy:
@@ -69,3 +50,4 @@ spec:
         duration: 5s # the amount to back off. Default unit is seconds, but could also be a duration (e.g. "2m", "1h")
         factor: 2 # a factor to multiply the base duration after each failed retry
         maxDuration: 3m # the maximum amount of time allowed for the backoff strategy
+

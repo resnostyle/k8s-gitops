@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: automation
+  name: cron
   # You'll usually want to add your resources to the argocd namespace.
   namespace: argocd
   # Add a this finalizer ONLY if you want these to cascade delete.
@@ -14,20 +14,20 @@ spec:
   # Source of the application manifests
   source:
     repoURL: git@github.com:resnostyle/k8s-gitops.git
-    path: automation
+    path: cluster/app/cron
 
     # helm specific config
     #    helm:
     #      # Extra parameters to set (same as setting through values.yaml, but these take precedence)
     #      # Release name override (defaults to application name)
-    #      releaseName: automation
+    #      releaseName: cron
     #
     #      version: v2
 
   # Destination cluster and namespace to deploy the application
   destination:
     server: https://kubernetes.default.svc
-    namespace: automation
+    namespace: cron
 
   # Sync policy
   syncPolicy:
