@@ -12,8 +12,8 @@ vars:
   ARGO_CMD_REPO_ADD: "argocd"
   SSH_KEY_PATH: "~/.ssh/id_ed25519"
 
-env:
-  KUBECONFIG: "{{.CLUSTER_DIR}}/kubeconfig"
+  #env:
+  #  KUBECONFIG: "{{.CLUSTER_DIR}}/kubeconfig"
 
 tasks:
   deps:
@@ -24,6 +24,12 @@ tasks:
     cmds:
       - task: deploy:argocd_repo
       - task: deploy:argocd_app
+
+  deploy:deploy_argocd:
+    desc: things
+    dir: cluster/base/argo-cd
+    cmds:
+      - kubectl apply -k .
 
   deploy:argocd_repo:
     desc: things
