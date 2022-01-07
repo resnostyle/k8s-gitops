@@ -29,12 +29,13 @@ tasks:
     desc: things
     dir: cluster/base/argo-cd
     cmds:
+      - cmd: kubectl create ns argocd
+        ignore_error: true
       - kubectl apply -k .
 
   deploy:argocd_repo:
     desc: things
     cmds:
-      - kubectl create ns argocd
       - kubens argocd
       - "{{.ARGO_CMD_REPO_ADD}} repo add git@gitlab.com:resnostyle/helm-charts.git --ssh-private-key-path {{.SSH_KEY_PATH}}"
       - "{{.ARGO_CMD_REPO_ADD}} repo add git@github.com:resnostyle/k8s-gitops.git --ssh-private-key-path {{.SSH_KEY_PATH}} --insecure-skip-server-verification"
@@ -42,9 +43,9 @@ tasks:
   deploy:argocd_app:
     cmds:
       - argocd app create base --repo git@github.com:resnostyle/k8s-gitops.git --path cluster/base --dest-server https://kubernetes.default.svc --directory-recurse --self-heal --sync-policy auto
-      - argocd app create core --repo git@github.com:resnostyle/k8s-gitops.git --path cluster/core --dest-server https://kubernetes.default.svc --directory-recurse --self-heal --sync-policy auto
+        #:      - argocd app create core --repo git@github.com:resnostyle/k8s-gitops.git --path cluster/core --dest-server https://kubernetes.default.svc --directory-recurse --self-heal --sync-policy auto
       - argocd app create apps --repo git@github.com:resnostyle/k8s-gitops.git --path cluster/apps --dest-server https://kubernetes.default.svc --directory-recurse --auto-prune --self-heal --sync-policy auto
-      - argocd app create crds --repo git@github.com:resnostyle/k8s-gitops.git --path cluster/crds --dest-server https://kubernetes.default.svc --directory-recurse --auto-prune --self-heal --sync-policy auto
+        #      - argocd app create crds --repo git@github.com:resnostyle/k8s-gitops.git --path cluster/crds --dest-server https://kubernetes.default.svc --directory-recurse --auto-prune --self-heal --sync-policy auto
 
   destroy:argocd_app:
     desc: destroy argocd apps
@@ -66,4 +67,3 @@ tasks:
       - rsync --verbose --progress --partial --rsync-path="sudo rsync" {{.K3S_PRIMARY_MASTER_NODE_USERNAME}}@{{.K3S_PRIMARY_MASTER_NODE_ADDR}}:/etc/rancher/k3s/k3s.yaml "{{.CLUSTER_DIR}}/kubeconfig"
       - sed -i '' 's/127.0.0.1/{{.K3S_LB_ADDR}}/g' "{{.CLUSTER_DIR}}/kubeconfig"
       - chmod go-r "{{.CLUSTER_DIR}}/kubeconfig"
-
