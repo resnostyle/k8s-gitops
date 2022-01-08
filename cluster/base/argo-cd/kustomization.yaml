@@ -3,7 +3,7 @@ kind: Kustomization
 
 
 resources:
-- base/argo-cd-ui-ingress.yaml
+    #- base/argo-cd-ui-ingress.yaml
 - https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
 components:
