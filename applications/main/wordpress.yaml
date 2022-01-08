@@ -27,7 +27,7 @@ spec:
   # Destination cluster and namespace to deploy the application
   destination:
     server: https://kubernetes.default.svc
-    namespace: aux
+    namespace: wordpress
 
   # Sync policy
   syncPolicy:
