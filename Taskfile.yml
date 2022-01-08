@@ -42,9 +42,9 @@ tasks:
 
   deploy:argocd_app:
     cmds:
-      - argocd app create base --revision main --repo git@github.com:resnostyle/k8s-gitops.git --path applications/base --dest-server https://kubernetes.default.svc --directory-recurse --self-heal --sync-policy auto
+      - argocd app create main --revision main --repo git@github.com:resnostyle/k8s-gitops.git --path applications/main --dest-server https://kubernetes.default.svc --directory-recurse --self-heal --sync-policy auto
         #:      - argocd app create core --repo git@github.com:resnostyle/k8s-gitops.git --path cluster/core --dest-server https://kubernetes.default.svc --directory-recurse --self-heal --sync-policy auto
-      - argocd app create apps --revision main --repo git@github.com:resnostyle/k8s-gitops.git --path applications/apps --dest-server https://kubernetes.default.svc --directory-recurse --auto-prune --self-heal --sync-policy auto
+        #- argocd app create apps --revision main --repo git@github.com:resnostyle/k8s-gitops.git --path applications/apps --dest-server https://kubernetes.default.svc --directory-recurse --auto-prune --self-heal --sync-policy auto
         #      - argocd app create crds --repo git@github.com:resnostyle/k8s-gitops.git --path cluster/crds --dest-server https://kubernetes.default.svc --directory-recurse --auto-prune --self-heal --sync-policy auto
 
   destroy:argocd_app:
