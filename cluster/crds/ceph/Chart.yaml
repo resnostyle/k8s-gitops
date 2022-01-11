@@ -26,3 +26,6 @@ dependencies:
 - name: rook-ceph
   version: v1.8.2
   repository: "https://charts.rook.io/release"
+- name: rook-ceph-cluster
+  version: v1.8.2
+  repository: "https://charts.rook.io/release"
