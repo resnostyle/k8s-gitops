@@ -4,10 +4,10 @@ version: "3"
 vars:
   PROJECT_DIR:
     sh: "git rev-parse --show-toplevel"
-  CLUSTER_DIR: "{{.PROJECT_DIR}}/cluster"
+  CLUSTER_DIR: "~/.kube"
   K3S_PRIMARY_MASTER_NODE_USERNAME: "bryan"
   K3S_PRIMARY_MASTER_NODE_ADDR: "192.168.2.211"
-  K3S_LB_ADDR: "192.168.1.1"
+  K3S_LB_ADDR: "192.168.2.211"
   ANSIBLE_PATH: "~/.ansible/"
   ARGO_CMD_REPO_ADD: "argocd"
   SSH_KEY_PATH: "~/.ssh/id_ed25519"
@@ -64,6 +64,7 @@ tasks:
   kubeconfig:
     desc: Remotely fetch kubeconfig from Kubernetes
     cmds:
-      - rsync --verbose --progress --partial --rsync-path="sudo rsync" {{.K3S_PRIMARY_MASTER_NODE_USERNAME}}@{{.K3S_PRIMARY_MASTER_NODE_ADDR}}:/etc/rancher/k3s/k3s.yaml "{{.CLUSTER_DIR}}/kubeconfig"
-      - sed -i '' 's/127.0.0.1/{{.K3S_LB_ADDR}}/g' "{{.CLUSTER_DIR}}/kubeconfig"
-      - chmod go-r "{{.CLUSTER_DIR}}/kubeconfig"
+      - rsync --verbose --progress --partial --rsync-path="sudo rsync" {{.K3S_PRIMARY_MASTER_NODE_USERNAME}}@{{.K3S_PRIMARY_MASTER_NODE_ADDR}}:/etc/rancher/k3s/k3s.yaml ~/.kube/config
+        #  "{{.CLUSTER_DIR}}/config"
+      - sed -i 's/127.0.0.1/{{.K3S_LB_ADDR}}/g' {{.CLUSTER_DIR}}/config
+      - chmod go-r {{.CLUSTER_DIR}}/config
