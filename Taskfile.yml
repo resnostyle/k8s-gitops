@@ -16,16 +16,27 @@ vars:
   #  KUBECONFIG: "{{.CLUSTER_DIR}}/kubeconfig"
 
 tasks:
-  deps:
-    - task: deps:ansible
-      #    - task: deps:pre-commit
 
-  bootstrap:kube:
+  bootstrap:cluster:
+    desc: do all the things
     cmds:
+      - task: setup:ansible
+      - task:  bootstrap:argo
+
+  setup:ansible:
+    desc: do all the things
+    cmds:
+    - task: deps:ansible
+    - task: run:ansible
+
+  bootstrap:argo:
+    desc: do all the things
+    cmds:
+      - task: deploy:argocd
       - task: deploy:argocd_repo
       - task: deploy:argocd_app
 
-  deploy:deploy_argocd:
+  deploy:argocd:
     desc: things
     dir: cluster/base/argo-cd
     cmds:
@@ -60,6 +71,12 @@ tasks:
       - "ansible-galaxy install -r requirements.yml --roles-path {{.ANSIBLE_PATH}}roles --force"
       - "ansible-galaxy collection install -r requirements.yml --collections-path {{.ANSIBLE_PATH}}collections --force"
       - "pip3 install -r requirements.txt"
+
+  run:ansible:
+    desc: run ansible
+    dir: ansible
+    cmds:
+      - "ansible-playbook -i inventory.yaml playbook.yml"
 
   kubeconfig:
     desc: Remotely fetch kubeconfig from Kubernetes
