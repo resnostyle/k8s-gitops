@@ -6,7 +6,7 @@ image:
   # -- Default image pull policy
   pullPolicy: Always
   # -- Default image tag
-  tag: v0.11.0
+  tag: v0.11.3
 
 # -- ImagePullSecrets for the image updater deployment
 imagePullSecrets: []
