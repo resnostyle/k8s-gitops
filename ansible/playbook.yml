@@ -10,3 +10,4 @@
     #    k3s_agent: "{{ lookup('file', 'server_config/k3s_agent.yml') | from_yaml }}"
   roles:
     - role: xanmanning.k3s
+    - role: local.packages
