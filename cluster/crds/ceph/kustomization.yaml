@@ -9,8 +9,8 @@ resources:
   - https://raw.githubusercontent.com/baloise-incubator/okd4-cluster-infra-apps/master/rook-ceph/base/35_ceph-filesystem.yaml
   - https://raw.githubusercontent.com/baloise-incubator/okd4-cluster-infra-apps/master/rook-ceph/base/40_ceph-storage-class.yaml
   - https://raw.githubusercontent.com/baloise-incubator/okd4-cluster-infra-apps/master/rook-ceph/base/45_cephfs-storage-class.yaml
-    #  - https://raw.githubusercontent.com/baloise-incubator/okd4-cluster-infra-apps/master/rook-ceph/base/50_ceph-volumesnapshotclass.yaml
-    #- https://raw.githubusercontent.com/baloise-incubator/okd4-cluster-infra-apps/master/rook-ceph/base/55_cephfs-volumesnapshotclass.yaml
+  - https://raw.githubusercontent.com/baloise-incubator/okd4-cluster-infra-apps/master/rook-ceph/base/50_ceph-volumesnapshotclass.yaml
+  - https://raw.githubusercontent.com/baloise-incubator/okd4-cluster-infra-apps/master/rook-ceph/base/55_cephfs-volumesnapshotclass.yaml
 
 patchesStrategicMerge:
   - https://raw.githubusercontent.com/baloise-incubator/okd4-cluster-infra-apps/master/rook-ceph/overlays/delete-ns-cert-manager.yaml
