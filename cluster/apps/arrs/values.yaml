@@ -108,6 +108,7 @@ radarr:
     config:
       enabled: true
 
+  accessMode: ReadWriteMany
     media:
       enabled: false
       mountPath: /media
