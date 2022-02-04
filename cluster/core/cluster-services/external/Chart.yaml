@@ -24,7 +24,7 @@ dependencies:
   version: v0.11.0
   repository: "https://metallb.github.io/metallb"
 - name: cert-manager
-  version: v1.6.2
+  version: v1.7.0
   repository: "https://charts.jetstack.io"
   #- name: traefik
   #  #  version:
