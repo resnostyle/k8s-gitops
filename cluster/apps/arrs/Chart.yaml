@@ -32,6 +32,3 @@ dependencies:
 - name: sonarr
   version: 15.3.0
   repository: "https://k8s-at-home.com/charts"
-  #- name: deluge
-  #  version: 5.2.0
-  #  repository: "https://k8s-at-home.com/charts"

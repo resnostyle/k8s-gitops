@@ -11,3 +11,8 @@
   roles:
     - role: xanmanning.k3s
     - role: local.packages
+
+#- name: rook
+#  hosts: rook
+#  roles:
+#    - role: local.parted

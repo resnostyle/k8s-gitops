@@ -21,6 +21,7 @@ tasks:
     desc: do all the things
     cmds:
       - task: setup:ansible
+      - task: kubeconfig
       - task:  bootstrap:argo
 
   setup:ansible:
