@@ -3,5 +3,6 @@
   ansible.builtin.package:
     name:
       - lvm2
+      - open-iscsi
     state: present
   become: yes
