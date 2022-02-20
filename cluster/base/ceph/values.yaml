@@ -229,7 +229,7 @@ ceph:
     snapshotter:
       image:
         repository: k8s.gcr.io/sig-storage/csi-snapshotter
-        tag: v4.2.0
+        tag: v4.2.1
         pullPolicy: IfNotPresent
       resources: {}
 
