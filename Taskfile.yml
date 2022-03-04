@@ -6,8 +6,8 @@ vars:
     sh: "git rev-parse --show-toplevel"
   CLUSTER_DIR: "~/.kube"
   K3S_PRIMARY_MASTER_NODE_USERNAME: "bryan"
-  K3S_PRIMARY_MASTER_NODE_ADDR: "192.168.2.211"
-  K3S_LB_ADDR: "192.168.2.211"
+  K3S_PRIMARY_MASTER_NODE_ADDR: "192.168.2.193"
+  K3S_LB_ADDR: "192.168.2.193"
   ANSIBLE_PATH: "~/.ansible/"
   ARGO_CMD_REPO_ADD: "argocd"
   SSH_KEY_PATH: "~/.ssh/id_ed25519"
@@ -18,7 +18,7 @@ vars:
 tasks:
 
   bootstrap:cluster:
-    desc: do all the things
+    desc: baremetal deploy
     cmds:
       - task: setup:ansible
       - task: kubeconfig
@@ -69,8 +69,8 @@ tasks:
     desc: install/upgrade ansible deps
     dir: ansible
     cmds:
-      - "ansible-galaxy install -r requirements.yml --roles-path {{.ANSIBLE_PATH}}roles --force"
-      - "ansible-galaxy collection install -r requirements.yml --collections-path {{.ANSIBLE_PATH}}collections --force"
+      - "ansible-galaxy install -r requirements.yml --roles-path {{.ANSIBLE_PATH}}roles"
+      - "ansible-galaxy collection install -r requirements.yml --collections-path {{.ANSIBLE_PATH}}collections"
       - "pip3 install -r requirements.txt"
 
   run:ansible:
