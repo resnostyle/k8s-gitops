@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: nfs-media-tv-pv
-  namespace: nfs
+  namespace: arrs
 spec:
   storageClassName: media-tv
   capacity:
@@ -25,7 +25,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: nfs-media-tv-pvc
-  namespace: nfs
+  namespace: arrs
 spec:
   accessModes:
     - ReadWriteMany
