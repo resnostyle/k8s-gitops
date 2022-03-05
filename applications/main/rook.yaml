@@ -14,7 +14,7 @@ spec:
   # Source of the application manifests
   source:
     repoURL: git@github.com:resnostyle/k8s-gitops.git
-    path: cluster/base/argo-cd
+    path: cluster/base/rook
 
     # helm specific config
     #    helm:
@@ -27,7 +27,7 @@ spec:
   # Destination cluster and namespace to deploy the application
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: rook-ceph
 
   # Sync policy
   syncPolicy:
