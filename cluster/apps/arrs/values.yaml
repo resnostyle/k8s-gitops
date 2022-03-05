@@ -31,7 +31,7 @@ radarr:
     # -- Enable and configure ingress settings for the chart under this key.
     # @default -- See values.yaml
     main:
-      enabled: false
+      enabled: true
 
   # -- Configures the probes for the main Pod.
   # @default -- See values.yaml
