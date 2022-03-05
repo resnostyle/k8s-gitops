@@ -65,8 +65,9 @@ radarr:
 
       #  accessMode: ReadWriteMany
     media:
-      enabled: false
-      mountPath: /media
+      enabled: true
+      existingClaim: nfs-media-tv-pvc
+      #      mountPath: /media
 
   metrics:
     # -- Enable and configure Exportarr sidecar and Prometheus serviceMonitor.
@@ -168,8 +169,8 @@ sonarr:
       enabled: true
 
     media:
-      enabled: false
-      mountPath: /media
+      enabled: true
+      existingClaim: nfs-media-movie-pvc
 
   metrics:
     # -- Enable and configure Exportarr sidecar and Prometheus serviceMonitor.
