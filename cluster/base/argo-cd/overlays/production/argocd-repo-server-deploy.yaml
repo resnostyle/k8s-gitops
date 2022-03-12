@@ -21,7 +21,12 @@ spec:
           subPath: argocd-flux-plugin
         - mountPath: /custom-tools
           name: custom-tools
+        - mountPath: /helm-secrets-private-keys/
+          name: helm-secrets-private-keys
       volumes:
+      - name: helm-secrets-private-keys
+        secret:
+          secretName: helm-secrets-private-keys
       - name: custom-tools
         emptyDir: {}
       initContainers:
@@ -30,7 +35,7 @@ spec:
         command: [sh, -c]
         env:
         - name: HELM_SECRETS_VERSION
-          value: "3.11.0"
+          value: "3.12.0"
         - name: SOPS_VERSION
           value: "3.7.1"
         - name: KUBECTL_VERSION

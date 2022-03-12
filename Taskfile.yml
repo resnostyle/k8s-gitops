@@ -6,8 +6,8 @@ vars:
     sh: "git rev-parse --show-toplevel"
   CLUSTER_DIR: "~/.kube"
   K3S_PRIMARY_MASTER_NODE_USERNAME: "bryan"
-  K3S_PRIMARY_MASTER_NODE_ADDR: "192.168.2.193"
-  K3S_LB_ADDR: "192.168.2.193"
+  K3S_PRIMARY_MASTER_NODE_ADDR: "192.168.2.173"
+  K3S_LB_ADDR: "192.168.2.173"
   ANSIBLE_PATH: "~/.ansible/"
   ARGO_CMD_REPO_ADD: "argocd"
   SSH_KEY_PATH: "~/.ssh/id_ed25519"
@@ -86,3 +86,14 @@ tasks:
         #  "{{.CLUSTER_DIR}}/config"
       - sed -i 's/127.0.0.1/{{.K3S_LB_ADDR}}/g' {{.CLUSTER_DIR}}/config
       - chmod go-r {{.CLUSTER_DIR}}/config
+
+  deploy:age:
+    desc: deploy age secret to kube
+    cmds:
+      - "kubectl create secret generic helm-secrets-private-keys --from-file=key.asc"
+
+  deploy:storage:
+    desc: setting storage class defaults
+    cmds:
+      - kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
+      - kubectl patch storageclass rook-ceph-block -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
