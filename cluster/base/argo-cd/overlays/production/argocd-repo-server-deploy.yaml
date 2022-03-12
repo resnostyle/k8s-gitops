@@ -21,7 +21,12 @@ spec:
           subPath: argocd-flux-plugin
         - mountPath: /custom-tools
           name: custom-tools
+        - mountPath: /helm-secrets-private-keys/
+          name: helm-secrets-private-keys
       volumes:
+      - name: helm-secrets-private-keys
+        secret:
+          secretName: helm-secrets-private-keys
       - name: custom-tools
         emptyDir: {}
       initContainers:
