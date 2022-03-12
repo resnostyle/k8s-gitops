@@ -3,3 +3,9 @@ kind: Deployment
 metadata:
   name: argocd-notifications-controller
 $patch: delete
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argocd-dex-server
+$patch: delete
