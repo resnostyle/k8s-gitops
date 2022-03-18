@@ -625,7 +625,7 @@ grafana:
   sidecar:
     image:
       repository: quay.io/kiwigrid/k8s-sidecar
-      tag: 1.15.7
+      tag: 1.15.8
       sha: ""
     imagePullPolicy: IfNotPresent
     resources: {}
