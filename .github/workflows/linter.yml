@@ -53,7 +53,7 @@ jobs:
         #     run: mv -p ~/.ansible/roles /github/workspace/ansible/
 
       - name: Do this dumb thing
-        run: ls ~/.ansible/roles
+        run: mkdir -p  /github/workspace/ansible/
 
       - name: Do this dumb thing
         run: ls /github
