@@ -56,7 +56,7 @@ jobs:
       - name: Lint Code Base
         uses: github/super-linter/slim@v4
         env:
-          ANSIBLE_ROLES_PATH: ~/.ansible/roles
+          ANSIBLE_ROLES_PATH: /home/runner/.ansible/roles
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
