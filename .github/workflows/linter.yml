@@ -50,6 +50,9 @@ jobs:
       - name: Install Ansible dependencies
         run: task deps:ansible
 
+      - name: Check
+        run: ls /home/runner/.ansible/roles
+
       ################################
       # Run Linter against code base #
       ################################
