@@ -49,6 +49,7 @@ jobs:
 
       - name: Install Ansible dependencies
         run: task deps:ansible
+        run: mv  ~/.ansible/roles /github/workspace/ansible/
 
       ################################
       # Run Linter against code base #
