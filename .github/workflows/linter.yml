@@ -47,13 +47,13 @@ jobs:
       - name: Install Task
         uses: arduino/setup-task@v1
 
-      - name: Install Ansible dependencies
-        run: task deps:ansible
+          #      - name: Install Ansible dependencies
+          #   run: task deps:ansible
           #  - name: Do this dumb thing
         #     run: mv -p ~/.ansible/roles /github/workspace/ansible/
 
       - name: Do this dumb thing
-        run: mkdir -p  /github/workspace/ansible/
+        run: pwd
 
       - name: Do this dumb thing
         run: ls /github
