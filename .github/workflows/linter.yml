@@ -49,14 +49,7 @@ jobs:
 
       - name: Install Ansible dependencies
         run: task deps:ansible
-          #  - name: Do this dumb thing
-        #     run: mv -p ~/.ansible/roles /github/workspace/ansible/
 
-      - name: Do this dumb thing
-        run: pwd
-
-      - name: Do this dumb thing
-        run: ls /github
       ################################
       # Run Linter against code base #
       ################################
