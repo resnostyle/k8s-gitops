@@ -1,33 +1,27 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: nfs-media-movie-pv
-  namespace: arrs
+  name: nfs
 spec:
-  storageClassName: media-movie
   capacity:
     storage: 1Mi
   accessModes:
     - ReadWriteMany
-  persistentVolumeReclaimPolicy: Retain
   nfs:
     server: 192.168.2.45
-    path: "/mnt/user/Movies"
+    path: "/mnt/user/download"
   mountOptions:
-  - nfsvers=4.2
-  - rw
-  - hard
-  - intr
+    - nfsvers=4.2
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: nfs-media-movie-pvc
-  namespace: arrs
+  name: nfs
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: media-movie
+  storageClassName: ""
   resources:
     requests:
       storage: 1Mi
+  volumeName: nfs
