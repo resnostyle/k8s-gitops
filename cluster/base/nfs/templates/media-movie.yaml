@@ -15,11 +15,9 @@ spec:
     path: "/mnt/user/Movies"
   mountOptions:
   - nfsvers=3
-  - tcp
-  - intr
+  - rw
   - hard
-  - noatime
-  - nodiratime
+  - intr
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
