@@ -8,7 +8,7 @@ unifi:
     # -- image repository
     repository: jacobalberty/unifi
     # -- image tag
-    tag: v7.0.25
+    tag: v7.1.61
     # -- image pull policy
     pullPolicy: IfNotPresent
 
