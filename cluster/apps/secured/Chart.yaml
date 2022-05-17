@@ -27,5 +27,5 @@ dependencies:
   version: 5.2.0
   repository: "https://k8s-at-home.com/charts"
 - name: pod-gateway
-  version: 5.2.0
+  version: 5.4.2
   repository: "https://k8s-at-home.com/charts"
