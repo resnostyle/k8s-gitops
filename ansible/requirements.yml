@@ -4,7 +4,7 @@ collections:
     version: 4.8.0
 roles:
   - src: xanmanning.k3s
-    version: v3.1.1
+    version: v3.1.2
   - name: ypsman.hostname
   - src: geerlingguy.haproxy
     version: 1.3.0
