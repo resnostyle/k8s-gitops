@@ -79,6 +79,12 @@ tasks:
     cmds:
       - "ansible-playbook -i inventory.yaml playbook.yml"
 
+  run:ansible:bootstrap:
+    desc: run ansible
+    dir: ansible
+    cmds:
+      - "ansible-playbook -i inventory.yaml playbook.yml -kKb"
+
   kubeconfig:
     desc: Remotely fetch kubeconfig from Kubernetes
     cmds:

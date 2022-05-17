@@ -8,35 +8,25 @@ rook:
     kube-3:
       ansible_host: 192.168.2.213
 
+bastion:
+  hosts:
+    bastion:
+      ansible_host: 192.168.2.85
 k3s_cluster:
   hosts:
     kube-0:
-      ansible_user: bryan
       ansible_host: 192.168.2.173
-      ansible_python_interpreter: /usr/bin/python3
-      #k3s_state: uninstalled
     kube-1:
-      ansible_user: bryan
       ansible_host: 192.168.2.192
-      ansible_python_interpreter: /usr/bin/python3
-      #k3s_state: uninstalled
     kube-2:
-      ansible_user: bryan
       ansible_host: 192.168.2.191
-      ansible_python_interpreter: /usr/bin/python3
-      #k3s_state: uninstalled
     kube-3:
-      ansible_user: bryan
       ansible_host: 192.168.2.194
-      ansible_python_interpreter: /usr/bin/python3
-      #k3s_state: uninstalled
     kube-4:
-      ansible_user: bryan
       ansible_host: 192.168.2.116
-      ansible_python_interpreter: /usr/bin/python3
-      #k3s_state: uninstalled
     kube-5:
-      ansible_user: bryan
       ansible_host: 192.168.2.221
-      ansible_python_interpreter: /usr/bin/python3
-      #k3s_state: uninstalled
+  vars:
+    ansible_user: bryan
+    ansible_python_interpreter: /usr/bin/python3
+    k3s_state: uninstalled
