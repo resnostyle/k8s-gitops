@@ -30,5 +30,5 @@ dependencies:
   version: 4.3.0
   repository: "https://k8s-at-home.com/charts"
 - name: sonarr
-  version: 16.1.1
+  version: 16.2.3
   repository: "https://k8s-at-home.com/charts"
