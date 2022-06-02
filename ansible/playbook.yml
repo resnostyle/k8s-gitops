@@ -19,7 +19,21 @@
     haproxy_frontend_name: 'hafrontend'
     haproxy_frontend_bind_address: '*'
     haproxy_frontend_port: 80
-    haproxy_frontend_mode: 'http'
+    haproxy_frontend_mode: 'tcp'
+    certbot_auto_renew: true
+    certbot_auto_renew_hour: "1"
+    certbot_auto_renew_minute: "55"
+    certbot_repo: "https://github.com/certbot/certbot.git"
+    certbot_version: master
+    certbot_install_method: source
+    certbot_dir: "/opt/certbot"
+    certbot_keep_updated: true
+    certbot_certs:
+      certbot_admin_email: bwp.pearson@gmail.com
+      domains:
+        - bryanwp.com
   roles:
-#    - role: ansible-host-setup
-    - role: geerlingguy.haproxy
+    - role: ansible-host-setup
+    - role: local.haproxy
+    - role: geerlingguy.git
+    - role: geerlingguy.certbot

@@ -10,8 +10,13 @@ rook:
 
 bastion:
   hosts:
-    bastion:
-      ansible_host: 192.168.2.85
+    bastion-1:
+      ansible_host: 192.168.2.110
+  vars:
+    ansible_become: true
+    haproxy_backend_servers:
+      - name: app1
+        address: 192.168.2.235:5000
 k3s_cluster:
   hosts:
     kube-0:
