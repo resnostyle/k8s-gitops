@@ -36,4 +36,3 @@
     - role: ansible-host-setup
     - role: local.haproxy
     - role: geerlingguy.git
-    - role: geerlingguy.certbot
