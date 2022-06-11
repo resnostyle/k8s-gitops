@@ -1,0 +1,94 @@
+clusterName: ${clusterName}
+talosVersion: v1.0
+kubernetesVersion: v1.23.6
+endpoint: https://${ipRange}10:6443
+domain: ${kubeDomain}
+cniConfig:
+  name: flannel
+nodes:
+  - hostname: kmaster1
+    ipAddress: ${ipRange}55
+    controlPlane: true
+    installDisk: /dev/sda
+    configPatches:
+      - op: add
+        path: /cluster/apiServer/certSANs
+        value:
+          - ${ipRange}10
+          - kmaster1
+          - ${clusterName}.${kubeDomain}
+    inlinePatch:
+      machine:
+        network:
+          interfaces:
+            - addresses:
+                - ${ipRange}1/24
+              interface: eth0
+  - hostname: kmaster2
+    ipAddress: ${ipRange}12
+    controlPlane: true
+    installDisk: /dev/sda
+    networkInterfaces:
+      - interface: eth0
+        dhcp: true
+      - interface: eth1
+        addresses:
+          - ${ipRange}12/24
+        mtu: 1500
+  - hostname: kworker1
+    ipAddress: ${ipRange}13
+    controlPlane: false
+    installDisk: /dev/sdb
+controlPlane:
+  configPatches:
+    - op: add
+      path: /machine/kubelet/extraArgs
+      value:
+        feature-gates: GracefulNodeShutdown=true,MixedProtocolLBService=true
+        rotate-server-certificates: "true"
+    - op: add
+      path: /machine/install/extraKernelArgs
+      value:
+        - talos.logging.kernel=udp://10.45.0.2:6050/
+  inlinePatch:
+    cluster:
+      aescbcEncryptionSecret: ${aescbcEncryptionKey}
+      aggregatorCA:
+        crt: ${k8sAggregatorCert}
+        key: ${k8sAggregatorCertKey}
+      ca:
+        crt: ${clusterCert}
+        key: ${clusterCertKey}
+      etcd:
+        ca:
+          crt: ${etcdCert}
+          key: ${etcdCertKey}
+      secret: ${clusterSecret}
+      serviceAccount:
+        key: ${k8sServiceAccountKey}
+      token: ${clusterToken}
+    machine:
+      ca:
+        crt: ${machineCert}
+        key: ${machineCertKey}
+      token: ${machineToken}
+worker:
+  configPatches:
+    - op: add
+      path: /machine/kubelet/extraArgs
+      value:
+        feature-gates: GracefulNodeShutdown=true,MixedProtocolLBService=true
+        rotate-server-certificates: "true"
+  inlinePatch:
+    cluster:
+      aescbcEncryptionSecret: ${aescbcEncryptionKey}
+      ca:
+        crt: ${clusterCert}
+        key: ${clusterCertKey}
+      secret: ${clusterSecret}
+      token: ${clusterToken}
+    machine:
+      ca:
+        crt: ${machineCert}
+        key: ${machineCertKey}
+      token: ${machineToken}
