@@ -1,0 +1,82 @@
+cluster:
+  aescbcEncryptionSecret: QVz9WE+1IC14D7+8qlMUElxLFvrP4erPvK7CIe7CHBg=
+  aggregatorCA:
+    crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJZRENDQVFhZ0F3SUJBZ0lSQUs0YVlRNTFTSVRlUDZMb0VSOTM5M0F3Q2dZSUtvWkl6ajBFQXdJd0FEQWUKRncweU1qQTBNakF3T1RReU1EVmFGdzB6TWpBME1UY3dPVFF5TURWYU1BQXdXVEFUQmdjcWhrak9QUUlCQmdncQpoa2pPUFFNQkJ3TkNBQVEwTHlLdElBSXR3VjRPdzRMQkR3Z0M4SUFncGphZlF4RlZhT2xEUVhSNTBhUFdVUFllClpBb3ZHOHJ1RVhPZjRKTk5JKzRrQ3dDSy9yYWhhSjJxOGtTN28yRXdYekFPQmdOVkhROEJBZjhFQkFNQ0FvUXcKSFFZRFZSMGxCQll3RkFZSUt3WUJCUVVIQXdFR0NDc0dBUVVGQndNQ01BOEdBMVVkRXdFQi93UUZNQU1CQWY4dwpIUVlEVlIwT0JCWUVGRndncjBhcEkwRXVBT0graFcxMHkyQ2dOVThBTUFvR0NDcUdTTTQ5QkFNQ0EwZ0FNRVVDCklFYnNicm1ONEJtSzlBd0h3ck9YYlV1WGx4ZUJHTTZiRWtlazZiSmUveXNMQWlFQTRZYTF6RFI4MU1nbDRwVVEKdFhjdUh0VU1jV3RxcmplSzBvQVFTVTE3QWd3PQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+    key: ''
+  apiServer:
+    certSANs:
+    - hegira.
+    disablePodSecurityPolicy: true
+    image: k8s.gcr.io/kube-apiserver:v1.23.5
+  ca:
+    crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJpVENDQVRDZ0F3SUJBZ0lSQU5qc1BLYzNjaWh4L2hRclJUeDg3b2d3Q2dZSUtvWkl6ajBFQXdJd0ZURVQKTUJFR0ExVUVDaE1LYTNWaVpYSnVaWFJsY3pBZUZ3MHlNakEwTWpBd09UUXlNRFZhRncwek1qQTBNVGN3T1RReQpNRFZhTUJVeEV6QVJCZ05WQkFvVENtdDFZbVZ5Ym1WMFpYTXdXVEFUQmdjcWhrak9QUUlCQmdncWhrak9QUU1CCkJ3TkNBQVJmdHBic09SSll3eWsvK0hTa3BpTWN4aGpzNTBadGpaTWFkRGZzcXBJWHRWQ3dGODVwZkNEck1KOWwKektzMFpPOWl5MDFXM3F3VFhDUURYdG12MWNBbm8yRXdYekFPQmdOVkhROEJBZjhFQkFNQ0FvUXdIUVlEVlIwbApCQll3RkFZSUt3WUJCUVVIQXdFR0NDc0dBUVVGQndNQ01BOEdBMVVkRXdFQi93UUZNQU1CQWY4d0hRWURWUjBPCkJCWUVGT3RWNG05TUd4QmZIV2J5d2xMdzBjY0g0UTgrTUFvR0NDcUdTTTQ5QkFNQ0EwY0FNRVFDSUdHUTRuTGkKajhYazAxdTd4aGxGME1PSDNBYlhMZXZXK2o3UkxvVEQybm1yQWlCV3dpMkMreWYzaTR3dS9vMUZTWnh2c0ViOAphWmNXRThEK2d1SDFKZjM5YWc9PQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+    key: ''
+  clusterName: hegira
+  controlPlane:
+    endpoint: https://10.8.20.30:6443
+  controllerManager:
+    image: k8s.gcr.io/kube-controller-manager:v1.23.5
+  discovery:
+    enabled: true
+    registries:
+      kubernetes: {}
+      service: {}
+  etcd:
+    ca:
+      crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJmakNDQVNPZ0F3SUJBZ0lRWW5TcDEvM2lFTS9mNTRNQmw3TzVjVEFLQmdncWhrak9QUVFEQWpBUE1RMHcKQ3dZRFZRUUtFd1JsZEdOa01CNFhEVEl5TURReU1EQTVOREl3TlZvWERUTXlNRFF4TnpBNU5ESXdOVm93RHpFTgpNQXNHQTFVRUNoTUVaWFJqWkRCWk1CTUdCeXFHU000OUFnRUdDQ3FHU000OUF3RUhBMElBQkg2YjhzbWFzUzdjCk9xOFJQcmE3Ums5eDE4MGtoOWIweG1EQ2pia3BlcnVCUVRNc1ZZaE53M25GOHFWUUcybGgyK3BGRVpnK3hTRWgKdXJGTFlFSXY4TnFqWVRCZk1BNEdBMVVkRHdFQi93UUVBd0lDaERBZEJnTlZIU1VFRmpBVUJnZ3JCZ0VGQlFjRApBUVlJS3dZQkJRVUhBd0l3RHdZRFZSMFRBUUgvQkFVd0F3RUIvekFkQmdOVkhRNEVGZ1FVcEp3NEI2R0VKU2c1CjRrajBURlRqRDh4bFFBOHdDZ1lJS29aSXpqMEVBd0lEU1FBd1JnSWhBS2NLK2crc2tSVVB6Zm9aMXlpblM5R3UKV3VxT2dmMHRhNS9vb0dSVDJKUVNBaUVBbUtndWhvRGpVSW9FRm90aXZ2TDBGTkRETTNYNmdPOTNpdnlnVisxaAprWmM9Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+      key: ''
+  extraManifests:
+  - https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/v0.3.0/deploy/ha-install.yaml
+  id: u1JHRbk07g3j2qQMcgWN-g3M9VvSEJzUqZ07jNWOrLA=
+  inlineManifests: []
+  network:
+    cni:
+      name: custom
+      urls:
+      - https://raw.githubusercontent.com/Truxnell/home-cluster/main/k8s/clusters/hegira/integrations/cilium-quick-install/quick-install.yaml
+    dnsDomain: cluster.local
+    podSubnets:
+    - 10.244.0.0/16
+    serviceSubnets:
+    - 10.96.0.0/12
+  proxy:
+    disabled: true
+    image: k8s.gcr.io/kube-proxy:v1.23.5
+  scheduler:
+    image: k8s.gcr.io/kube-scheduler:v1.23.5
+  secret: ''
+  serviceAccount:
+    key: ''
+  token: ''
+debug: false
+machine:
+  ca:
+    crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJQekNCOHFBREFnRUNBaEVBK2hmTlVITk5KVWdybVJueUxuaSs5akFGQmdNclpYQXdFREVPTUF3R0ExVUUKQ2hNRmRHRnNiM013SGhjTk1qSXdOREl3TURrME1qQTFXaGNOTXpJd05ERTNNRGswTWpBMVdqQVFNUTR3REFZRApWUVFLRXdWMFlXeHZjekFxTUFVR0F5dGxjQU1oQUF5QytVODdVc1FMQjdOUlVQZmYvVUljTTlXZjVKV2syQXJsCjNJaFlKbXVZbzJFd1h6QU9CZ05WSFE4QkFmOEVCQU1DQW9Rd0hRWURWUjBsQkJZd0ZBWUlLd1lCQlFVSEF3RUcKQ0NzR0FRVUZCd01DTUE4R0ExVWRFd0VCL3dRRk1BTUJBZjh3SFFZRFZSME9CQllFRkpFTVMyNXhFNmcxVW1SNAowWEhKV2Y3ZGtpOXVNQVVHQXl0bGNBTkJBSmNsdFYyU2ZzZC9MTmVaZ3FTZCtYMHZFclVzZVpEcFhzYTlpYVZWCnU2MDk4TmR0MnFHdXhjemd3TFQ0NGhSOXNZNGdMV0IwSmxoaE1JUnV3a1JtcGdJPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+    key: LS0tLS1CRUdJTiBFRDI1NTE5IFBSSVZBVEUgS0VZLS0tLS0KTUM0Q0FRQXdCUVlESzJWd0JDSUVJSWMvdmJLQk4va0h0VGdVeTM0SGpiQW1pR0dFTWFFZ2ZqcjR2R2YrNktXaQotLS0tLUVORCBFRDI1NTE5IFBSSVZBVEUgS0VZLS0tLS0K
+  certSANs:
+  - hegira.
+  features:
+    rbac: true
+  install:
+    bootloader: true
+    disk: /dev/sda
+    image: ghcr.io/talos-systems/installer:v1.0.3
+    wipe: false
+  kubelet:
+    extraArgs:
+      feature-gates: GracefulNodeShutdown=true,MixedProtocolLBService=true
+      rotate-server-certificates: 'true'
+    image: ghcr.io/siderolabs/kubelet:v1.23.5
+  network:
+    hostname: leela.
+    interfaces:
+    - dhcp: true
+      interface: eth0
+  time:
+    disabled: false
+    servers:
+    - time.cloudflare.com
+  token: ''
+  type: controlplane
+persist: true
+version: v1alpha1
